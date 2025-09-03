@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Budget Tracker</title>
+  <!-- DaisyUI + Tailwind CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQnVkZ2V0IFRyYWNrZXIiLCJzaG9ydF9uYW1lIjoiQnVkZ2V0IFRyYWNrZXIiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsInRoZW1lX2NvbG9yIjoiIzRhNjRmZiIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBEOTRiV3dnZG1WeWMybHZiajBpTVM0d0lpQmxibU52WkdsdVp6MGlWVlJHTFRnaVB6NDhZMjl1ZEdWdWRDQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIaHRiRzV6T25oc2FXNXJQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh4T1RrNUwzaHNhVzVySWo0OGVHbHRZbUZzSUdacGJHbHNQU0l3TURBd01EQXdMVGN5TmpCdE55MHpOelJ0SWlCMlpYSnphVzl1UFNJeExqRWlQbHRDUkVaSFJWUXRWRkpCUTB0RlVsMDhMM2hwYldKaGJENDhZMlZ5ZENCdlptWnpaWFE5SWpBdU5TSUI4d3dMVEV0TUMweExUQXRNVFF0TUMwd0xURXRNVFF0TVRRdE1DMHdMVEV0TUMwd0xURTBMVEV0TVRRdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1TMHhMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1DMHdMVEF0TUMwd0xUQXRNQzB4TkMweExURXRNUzB4TFRFdE1TMER2QWdHQVlSN0ZNQXdEQU1CQUFFVlBQQkRBQUFCQjBHQVlCUkZNQXdEQU1CQUhHUVBQQkRBQUFCQjRQUVlCZ0dFTXpETUF3REFOeEFFVlRQQXpJTUF3REFPQkFHVVRQQXpJTUF3REFNQTBHQ1lCaEdNUXpETUF3REFNQTBHQ1lCaEZNQXdEQU1CQUdHUVBQQS9HTUF3REFPQkFFWFRQQXpJTUF3REFNQXNHQ1lCaEZNd3pETUF3REFNQXNHQVlSN0dNQXdEQU1CQUdHUVBQQXpHTUF3REFQeEFFVVRQQTdJTUF3REFPeEFFV1RQQXpJTUF3REFOd3JFS1lCaEZNd3pETUF3REFNQTBHQ1lCaEZNQXdEQU1CQUZtUVBQQTdHTUF3REFPeEFFV1RQQXpJTUF3REFNQThHQ1lCaEhNd3pETUF3REFNQThHQVlSN0ZNQXdEQU1CQUVtUVBQQXpHTUF3REFOeEFFVlRQQTdJTUF3REFOeEFFVlRQQXpJTUF3REFOd3pFS1lCaEZNQXdEQU1CQUZtUVBQQS9HTUF3REFOeEFFVlRQQXpJTUF3REFNQTBHQ1lCaEhNd3pETUF3REFNQTBHQ1lCaEZNQXdEQU1CQUZtUVBQQTdHTUF3REFOeEFFVlRQQXpJTUF3REFNeHNFS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXR3RUF3REFOeEFFVlRQQS9JTUFtSXR3RUF3REFNeEVFS1lCaEhNd3pETUF3REFNeGNFS1lCaEZNQXdEQU1CQUdHUVBQQTdHTUFtSXRBRUF3REFOeEFFVlRQQTdJTUF3REFOUkRFS1lCaEhNd3pETUF3REFOUkRFS1lCaEZNQXdEQU1CQUhHUVBQQS9HTUFtSXRBRUF3REFOeEFFVlRQQS9JTUFtSXR3RUF3REFOUHRFS1lCaEZNQXdEQU1CQUhHUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQS9JTUFtSXR3RUF3REFOd0VFS1lCaEZNQXdEQU1CQUZtUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQS9JTUFtSXR3RUF3REFQUmJFS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQS9JTUFtSXRBRUF3REFQeGJFS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRBRUF3REFOeEFFVlRQQTdJTUF3REFQeGpFS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRBRUF3REFOeEFFVlRQQTdJTUF3REFQUmpFS1lCaEZNQXdEQU1CQUhtUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQXpJTUF3REFQeGpFS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRnRUF3REFOeEFFVlRQQS9JTUFtSXR3RUF3REFQUmpFS1lCaEZNQXdEQU1CQUhHUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQXpJTUF3REFQeHJFS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFOUXpFS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRnRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFOd3pFS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXR3RUF3REFOeEFFVlRQQS9JTUFtSXRnRUF3REFOd3pFS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXR3RUF3REFOeEFFVlRQQS9JTUFtSXRnRUF3REFOUXpFS1lCaEZNQXdEQU1CQUhtUVBQQXpHTUFtSXR3RUF3REFOeEFFVlRQQS9JTUFtSXRnRUF3REFOd3pFS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRBRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFOd3pFS1lCaEZNQXdEQU1CQUdHUVBQQTdHTUFtSXRBRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFOUXpFS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXR3RUF3REFOeEFFVlRQQS9JTUFtSXRnRUF3REFOUXpFS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXR3RUF3REFOeEFFVlRQQS9JTUFtSXRnRUF3REFNWTBHS1lCaEZNQXdEQU1CQUhtUVBQQS9HTUFtSXRBRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFNWTBHS1lCaEZNQXdEQU1CQUhtUVBQQS9HTUFtSXRBRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFNWTBHS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQXpJTUF3REFNWTBHS1lCaEZNQXdEQU1CQUdHUVBQQXpHTUFtSXRnRUF3REFOeEFFVlRQQXpJTUF3REFNWTBHS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRnRUF3REFOeEFFVlRQQTdJTUFtSXRBRUF3REFNWTBHS1lCaEZNQXdEQU1CQUdHUVBQQS9HTUFtSXRnRUF3REFOeEFFVlRQQTdJTUFtSXRBRUE9PSIsInNpemVzIjoiMTQ0eDE0NCJ9XSJ9" />
+  <style>
+    /* Keep table horizontally scrollable on small screens */
+    .table-wrap { overflow-x:auto; }
+    .number::-webkit-outer-spin-button,
+    .number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .number { -moz-appearance: textfield; }
+    /* Improve button sizes on mobile */
+    @media (max-width: 640px) {
+      .action-buttons { display: flex; flex-direction: column; gap: 0.5rem; }
+      .action-buttons button { width: 100%; }
+    }
+    /* Improve table appearance on small screens */
+    @media (max-width: 640px) {
+      .mobile-card { display: block; margin-bottom: 0.5rem; border-radius: 0.5rem; padding: 0.75rem; }
+      .mobile-card > div { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
+      .mobile-hidden { display: none; }
+      .mobile-block { display: block; width: 100%; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-base-200">
+  <div class="navbar bg-base-100 shadow-sm sticky top-0 z-10">
+    <div class="flex-1 px-2">
+      <span class="text-xl font-semibold">💸 Budget Tracker</span>
+    </div>
+    <div class="flex-none gap-2 pr-2">
+      <button id="installPWA" class="btn btn-sm btn-outline hidden">Install App</button>
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a id="quickAdd"><i class="text-lg">📝</i> Quick Add</a></li>
+          <li><a id="viewStats"><i class="text-lg">📊</i> View Stats</a></li>
+          <li><a id="settingsBtn"><i class="text-lg">⚙️</i> Settings</a></li>
+        </ul>
+      </div>
+      <select id="themeSelect" class="select select-sm select-bordered">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="cupcake">Cupcake</option>
+        <option value="emerald">Emerald</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Settings Modal -->
+  <dialog id="settingsModal" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Settings</h3>
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">Currency Symbol</span>
+        </label>
+        <select id="currencySelect" class="select select-bordered w-full">
+          <option value="₹">₹ (Indian Rupee)</option>
+          <option value="$">$ (US Dollar)</option>
+          <option value="€">€ (Euro)</option>
+          <option value="£">£ (British Pound)</option>
+          <option value="¥">¥ (Japanese Yen/Chinese Yuan)</option>
+        </select>
+      </div>
+      <div class="form-control mt-4">
+        <label class="label">
+          <span class="label-text">Budget Rule</span>
+          <span class="label-text-alt">How your income should be allocated</span>
+        </label>
+        <select id="budgetRuleSelect" class="select select-bordered w-full">
+          <option value="503020">50/30/20 (Needs/Wants/Savings)</option>
+          <option value="604000">60/40/0 (Needs/Wants)</option>
+          <option value="703000">70/30/0 (Needs/Wants)</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div id="customRuleSection" class="mt-4 hidden">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="form-control">
+            <label class="label"><span class="label-text">Needs %</span></label>
+            <input id="customNeeds" type="number" min="0" max="100" class="input input-bordered w-full number" value="50">
+          </div>
+          <div class="form-control">
+            <label class="label"><span class="label-text">Wants %</span></label>
+            <input id="customWants" type="number" min="0" max="100" class="input input-bordered w-full number" value="30">
+          </div>
+          <div class="form-control">
+            <label class="label"><span class="label-text">Savings %</span></label>
+            <input id="customSavings" type="number" min="0" max="100" class="input input-bordered w-full number" value="20">
+          </div>
+        </div>
+        <div class="text-sm mt-2 text-center" id="customRuleTotal">Total: 100%</div>
+      </div>
+      <div class="modal-action">
+        <button id="saveSettingsBtn" class="btn btn-primary">Save</button>
+        <button class="btn" onclick="settingsModal.close()">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <main class="container mx-auto p-4 space-y-4">
+    <!-- Quick Add Modal -->
+    <dialog id="quickAddModal" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Quick Add</h3>
+        <div class="grid gap-3 mt-4">
+          <div>
+            <label class="label"><span class="label-text">Category</span></label>
+            <select id="quickCategorySelect" class="select select-bordered w-full">
+              <option value="Income">Income</option>
+              <option value="Needs">Needs</option>
+              <option value="Wants">Wants</option>
+              <option value="Savings">Savings</option>
+            </select>
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Amount</span></label>
+            <input id="quickAmountInput" type="number" min="0" step="0.01" class="input input-bordered w-full number" placeholder="0.00" />
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Notes</span></label>
+            <input id="quickNotesInput" type="text" class="input input-bordered w-full" placeholder="e.g., Groceries / Spotify / Gift" />
+          </div>
+        </div>
+        <div class="modal-action">
+          <button id="quickAddBtn" class="btn btn-primary">Add</button>
+          <button class="btn" onclick="quickAddModal.close()">Cancel</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Stats Modal -->
+    <dialog id="statsModal" class="modal">
+      <div class="modal-box max-w-3xl">
+        <h3 class="font-bold text-lg">Monthly Statistics</h3>
+        <div class="mt-4 space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="stats shadow">
+              <div class="stat">
+                <div class="stat-title">Average Monthly Income</div>
+                <div id="avgIncome" class="stat-value text-primary">-</div>
+                <div class="stat-desc">Over the last 6 months</div>
+              </div>
+            </div>
+            <div class="stats shadow">
+              <div class="stat">
+                <div class="stat-title">Average Monthly Spending</div>
+                <div id="avgSpending" class="stat-value text-secondary">-</div>
+                <div class="stat-desc">Over the last 6 months</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">Top Spending Categories</h4>
+            <div id="topSpendingList" class="space-y-2">
+              <div class="skeleton h-6 w-full"></div>
+              <div class="skeleton h-6 w-full"></div>
+              <div class="skeleton h-6 w-full"></div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-semibold mb-2">Monthly Trend</h4>
+              <div id="monthlyTrendChart" class="h-40 w-full bg-base-200 rounded-box flex items-center justify-center">
+                <span class="text-sm opacity-70">Chart will appear here</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-2">Category Distribution</h4>
+              <div id="categoryDistChart" class="h-40 w-full bg-base-200 rounded-box flex items-center justify-center">
+                <span class="text-sm opacity-70">Chart will appear here</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-action">
+          <button class="btn" onclick="statsModal.close()">Close</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Month + Salary Card -->
+    <section class="card bg-base-100 shadow">
+      <div class="card-body grid gap-4 md:grid-cols-3">
+        <div>
+          <label class="label"><span class="label-text">Month</span></label>
+          <input id="monthPicker" type="month" class="input input-bordered w-full" />
+        </div>
+        <div>
+          <label class="label"><span class="label-text">Salary / Income for month (<span id="currencySymbolDisplay">₹</span>)</span></label>
+          <input id="salaryInput" type="number" min="0" step="1" placeholder="20000" class="input input-bordered w-full number" />
+        </div>
+        <div class="flex items-end gap-2">
+          <button id="saveSalaryBtn" class="btn btn-primary w-full">Save Month & Salary</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPIs -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="stats bg-base-100 shadow">
+        <div class="stat p-2 md:p-4">
+          <div class="stat-title">Income</div>
+          <div id="kpiIncome" class="stat-value text-base md:text-2xl">₹0</div>
+          <div class="stat-desc">Total income</div>
+        </div>
+      </div>
+      <div class="stats bg-base-100 shadow">
+        <div class="stat p-2 md:p-4">
+          <div class="stat-title">Needs</div>
+          <div id="kpiNeeds" class="stat-value text-base md:text-2xl">₹0</div>
+          <div class="stat-desc"><span id="pctNeeds">0%</span> of income</div>
+        </div>
+      </div>
+      <div class="stats bg-base-100 shadow">
+        <div class="stat p-2 md:p-4">
+          <div class="stat-title">Wants</div>
+          <div id="kpiWants" class="stat-value text-base md:text-2xl">₹0</div>
+          <div class="stat-desc"><span id="pctWants">0%</span> of income</div>
+        </div>
+      </div>
+      <div class="stats bg-base-100 shadow">
+        <div class="stat p-2 md:p-4">
+          <div class="stat-title">Savings</div>
+          <div id="kpiSavings" class="stat-value text-base md:text-2xl">₹0</div>
+          <div class="stat-desc"><span id="pctSavings">0%</span> of income</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Balance Card -->
+    <section class="card bg-base-100 shadow">
+      <div class="card-body">
+        <div class="flex justify-between items-center">
+          <h2 class="card-title">Remaining Balance</h2>
+          <div id="remainingBalance" class="text-2xl font-bold">₹0</div>
+        </div>
+        <progress id="balanceProgress" class="progress w-full" value="0" max="100"></progress>
+        <div class="text-sm text-right"><span id="spentPercentage">0%</span> spent</div>
+      </div>
+    </section>
+
+    <!-- Progress bars -->
+    <section class="card bg-base-100 shadow">
+      <div class="card-body grid gap-4">
+        <div>
+          <div class="flex justify-between text-sm mb-1">
+            <span>Needs (<span id="needsTarget">target ≤ 50%</span>)</span>
+            <span id="needsBarLabel">0%</span>
+          </div>
+          <progress id="needsBar" class="progress progress-primary w-full" value="0" max="100"></progress>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1">
+            <span>Wants (<span id="wantsTarget">target ≤ 30%</span>)</span>
+            <span id="wantsBarLabel">0%</span>
+          </div>
+          <progress id="wantsBar" class="progress progress-secondary w-full" value="0" max="100"></progress>
+        </div>
+        <div>
+          <div class="flex justify-between text-sm mb-1">
+            <span>Savings (<span id="savingsTarget">target ≥ 20%</span>)</span>
+            <span id="savingsBarLabel">0%</span>
+          </div>
+          <progress id="savingsBar" class="progress progress-accent w-full" value="0" max="100"></progress>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Entry Form -->
+    <section class="card bg-base-100 shadow">
+      <div class="card-body">
+        <h2 class="card-title">Add Entry</h2>
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-3 items-end">
+          <div class="md:col-span-2">
+            <label class="label"><span class="label-text">Date</span></label>
+            <input id="dateInput" type="date" class="input input-bordered w-full" />
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Category</span></label>
+            <select id="categorySelect" class="select select-bordered w-full">
+              <option value="Income">Income</option>
+              <option value="Needs">Needs</option>
+              <option value="Wants">Wants</option>
+              <option value="Savings">Savings</option>
+            </select>
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Amount (<span class="currency-symbol">₹</span>)</span></label>
+            <input id="amountInput" type="number" min="0" step="0.01" class="input input-bordered w-full number" placeholder="0.00" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="label">
+              <span class="label-text">Notes</span>
+              <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-xs btn-ghost">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li class="menu-title">Common Needs</li>
+                  <li><a class="preset-note" data-note="Groceries">Groceries</a></li>
+                  <li><a class="preset-note" data-note="Rent">Rent</a></li>
+                  <li><a class="preset-note" data-note="Utilities">Utilities</a></li>
+                  <li class="menu-title">Common Wants</li>
+                  <li><a class="preset-note" data-note="Dining Out">Dining Out</a></li>
+                  <li><a class="preset-note" data-note="Entertainment">Entertainment</a></li>
+                  <li><a class="preset-note" data-note="Shopping">Shopping</a></li>
+                  <li class="menu-title">Common Savings</li>
+                  <li><a class="preset-note" data-note="Emergency Fund">Emergency Fund</a></li>
+                  <li><a class="preset-note" data-note="Investments">Investments</a></li>
+                </ul>
+              </div>
+            </label>
+            <input id="notesInput" type="text" class="input input-bordered w-full" placeholder="e.g., Groceries / Spotify / Gift" />
+          </div>
+          <div>
+            <button id="addBtn" class="btn btn-primary w-full">Add</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Entries Table -->
+    <section class="card bg-base-100 shadow">
+      <div class="card-body">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-2">
+          <h2 class="card-title">Entries</h2>
+          <div class="flex flex-wrap gap-2 action-buttons">
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-outline btn-sm">
+                Filter <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+              </div>
+              <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a id="filterAll">All Entries</a></li>
+                <li><a id="filterIncome">Income Only</a></li>
+                <li><a id="filterNeeds">Needs Only</a></li>
+                <li><a id="filterWants">Wants Only</a></li>
+                <li><a id="filterSavings">Savings Only</a></li>
+              </ul>
+            </div>
+            <button id="searchBtn" class="btn btn-outline btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              Search
+            </button>
+            <button id="exportBtn" class="btn btn-outline btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export
+            </button>
+            <label class="btn btn-outline btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Import<input id="importInput" type="file" accept="application/json" class="hidden" />
+            </label>
+            <button id="clearMonthBtn" class="btn btn-error btn-outline btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div id="searchBox" class="mb-4 hidden">
+          <div class="relative">
+            <input id="searchInput" type="text" placeholder="Search entries..." class="input input-bordered w-full pr-10" />
+            <button id="closeSearch" class="absolute right-3 top-1/2 -translate-y-1/2 btn btn-ghost btn-sm btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Table for larger screens -->
+        <div class="table-wrap hidden sm:block">
+          <table class="table table-zebra">
+            <thead>
+              <tr>
+                <th class="w-32">Date</th>
+                <th class="w-32">Category</th>
+                <th>Notes</th>
+                <th class="w-32 text-right">Amount (<span class="currency-symbol">₹</span>)</th>
+                <th class="w-32 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="entriesBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Mobile view for entries -->
+        <div id="entriesMobile" class="sm:hidden space-y-2"></div>
+      </div>
+    </section>
+
+    <!-- Entry Editor Modal -->
+    <dialog id="entryEditorModal" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Edit Entry</h3>
+        <div class="grid gap-3 mt-4">
+          <div>
+            <label class="label"><span class="label-text">Date</span></label>
+            <input id="editDateInput" type="date" class="input input-bordered w-full" />
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Category</span></label>
+            <select id="editCategorySelect" class="select select-bordered w-full">
+              <option value="Income">Income</option>
+              <option value="Needs">Needs</option>
+              <option value="Wants">Wants</option>
+              <option value="Savings">Savings</option>
+            </select>
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Amount</span></label>
+            <input id="editAmountInput" type="number" min="0" step="0.01" class="input input-bordered w-full number" />
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Notes</span></label>
+            <input id="editNotesInput" type="text" class="input input-bordered w-full" />
+          </div>
+          <input type="hidden" id="editEntryId" />
+        </div>
+        <div class="modal-action">
+          <button id="saveEditBtn" class="btn btn-primary">Save Changes</button>
+          <button class="btn" onclick="entryEditorModal.close()">Cancel</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Footer -->
+    <footer class="pb-10 text-center text-sm opacity-70">
+      <p>Data is stored locally in your browser. Use Export/Import for backup or when switching devices.</p>
+      <p class="mt-1">Made with ❤️ | <a href="#" id="helpBtn" class="link">Help</a></p>
+    </footer>
+  </main>
+
+  <script>
+    // ---------- Storage helpers ----------
+    const STORAGE_KEY = 'budgetData.v1'; // { 'YYYY-MM': { salary: number, entries: [] } }
+    const SETTINGS_KEY = 'budgetSettings.v1'; // { currency: string, budgetRule: string, customRules: {} }
+
+    function readStore() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    }
+    function writeStore(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+    function readSettings() {
+      try { 
+        return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {
+          currency: '₹',
+          budgetRule: '503020',
+          customRules: { needs: 50, wants: 30, savings: 20 }
+        }; 
+      }
+      catch { 
+        return {
+          currency: '₹',
+          budgetRule: '503020',
+          customRules: { needs: 50, wants: 30, savings: 20 }
+        }; 
+      }
+    }
+    function writeSettings(data) { localStorage.setItem(SETTINGS_KEY, JSON.stringify(data)); }
+
+    // ---------- DOM ----------
+    // Settings
+    const settingsModal = document.getElementById('settingsModal');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+    const currencySelect = document.getElementById('currencySelect');
+    const budgetRuleSelect = document.getElementById('budgetRuleSelect');
+    const customRuleSection = document.getElementById('customRuleSection');
+    const customNeeds = document.getElementById('customNeeds');
+    const customWants = document.getElementById('customWants');
+    const customSavings = document.getElementById('customSavings');
+    const customRuleTotal = document.getElementById('customRuleTotal');
+    const currencySymbolDisplay = document.getElementById('currencySymbolDisplay');
+
+    // Month and Salary
+    const monthPicker = document.getElementById('monthPicker');
+    const salaryInput = document.getElementById('salaryInput');
+    const saveSalaryBtn = document.getElementById('saveSalaryBtn');
+
+    // KPIs and Progress
+    const kpiIncome = document.getElementById('kpiIncome');
+    const kpiNeeds = document.getElementById('kpiNeeds');
+    const kpiWants = document.getElementById('kpiWants');
+    const kpiSavings = document.getElementById('kpiSavings');
+
+    const pctNeeds = document.getElementById('pctNeeds');
+    const pctWants = document.getElementById('pctWants');
+    const pctSavings = document.getElementById('pctSavings');
+
+    const needsBar = document.getElementById('needsBar');
+    const wantsBar = document.getElementById('wantsBar');
+    const savingsBar = document.getElementById('savingsBar');
+    const needsBarLabel = document.getElementById('needsBarLabel');
+    const wantsBarLabel = document.getElementById('wantsBarLabel');
+    const savingsBarLabel = document.getElementById('savingsBarLabel');
+    const needsTarget = document.getElementById('needsTarget');
+    const wantsTarget = document.getElementById('wantsTarget');
+    const savingsTarget = document.getElementById('savingsTarget');
+
+    const remainingBalance = document.getElementById('remainingBalance');
+    const balanceProgress = document.getElementById('balanceProgress');
+    const spentPercentage = document.getElementById('spentPercentage');
+
+    // Add Entry
+    const dateInput = document.getElementById('dateInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const amountInput = document.getElementById('amountInput');
+    const notesInput = document.getElementById('notesInput');
+    const addBtn = document.getElementById('addBtn');
+    const presetNotes = document.querySelectorAll('.preset-note');
+
+    // Quick Add
+    const quickAddModal = document.getElementById('quickAddModal');
+    const quickAdd = document.getElementById('quickAdd');
+    const quickCategorySelect = document.getElementById('quickCategorySelect');
+    const quickAmountInput = document.getElementById('quickAmountInput');
+    const quickNotesInput = document.getElementById('quickNotesInput');
+    const quickAddBtn = document.getElementById('quickAddBtn');
+
+    // Entries
+    const entriesBody = document.getElementById('entriesBody');
+    const entriesMobile = document.getElementById('entriesMobile');
+    const exportBtn = document.getElementById('exportBtn');
+    const importInput = document.getElementById('importInput');
+    const clearMonthBtn = document.getElementById('clearMonthBtn');
+    
+    // Search and Filter
+    const searchBtn = document.getElementById('searchBtn');
+    const searchBox = document.getElementById('searchBox');
+    const searchInput = document.getElementById('searchInput');
+    const closeSearch = document.getElementById('closeSearch');
+    const filterAll = document.getElementById('filterAll');
+    const filterIncome = document.getElementById('filterIncome');
+    const filterNeeds = document.getElementById('filterNeeds');
+    const filterWants = document.getElementById('filterWants');
+    const filterSavings = document.getElementById('filterSavings');
+
+    // Entry Editor
+    const entryEditorModal = document.getElementById('entryEditorModal');
+    const editDateInput = document.getElementById('editDateInput');
+    const editCategorySelect = document.getElementById('editCategorySelect');
+    const editAmountInput = document.getElementById('editAmountInput');
+    const editNotesInput = document.getElementById('editNotesInput');
+    const editEntryId = document.getElementById('editEntryId');
+    const saveEditBtn = document.getElementById('saveEditBtn');
+
+    // Stats
+    const statsModal = document.getElementById('statsModal');
+    const viewStats = document.getElementById('viewStats');
+    const avgIncome = document.getElementById('avgIncome');
+    const avgSpending = document.getElementById('avgSpending');
+    const topSpendingList = document.getElementById('topSpendingList');
+    const monthlyTrendChart = document.getElementById('monthlyTrendChart');
+    const categoryDistChart = document.getElementById('categoryDistChart');
+
+    // Other
+    const themeSelect = document.getElementById('themeSelect');
+    const helpBtn = document.getElementById('helpBtn');
+    const installPWA = document.getElementById('installPWA');
+
+    // ---------- Utilities ----------
+    function formatCurrency(n) {
+      const settings = readSettings();
+      return settings.currency + (Number(n || 0)).toLocaleString('en-IN', { 
+        maximumFractionDigits: 2, 
+        minimumFractionDigits: 0 
+      });
+    }
+
+    function currentKey() {
+      return monthPicker.value || new Date().toISOString().slice(0,7); // YYYY-MM
+    }
+
+    function ensureMonth(key) {
+      const store = readStore();
+      if (!store[key]) {
+        store[key] = { salary: 0, entries: [] };
+        writeStore(store);
+      }
+      return store[key];
+    }
+
+    function loadMonth(key) {
+      const store = readStore();
+      const month = store[key] || { salary: 0, entries: [] };
+      salaryInput.value = month.salary || '';
+      currentFilter = 'all';
+      searchInput.value = '';
+      render();
+    }
+
+    function saveSalary() {
+      const key = currentKey();
+      const store = readStore();
+      store[key] = store[key] || { salary: 0, entries: [] };
+      store[key].salary = Number(salaryInput.value || 0);
+      writeStore(store);
+      render();
+    }
+
+    function addEntry(fromQuick = false) {
+      const key = currentKey();
+      const store = readStore();
+      store[key] = store[key] || { salary: 0, entries: [] };
+      
+      let entryDate, entryCategory, entryAmount, entryNotes;
+      
+      if (fromQuick) {
+        entryDate = new Date().toISOString().slice(0,10);
+        entryCategory = quickCategorySelect.value;
+        entryAmount = Number(quickAmountInput.value || 0);
+        entryNotes = quickNotesInput.value.trim();
+      } else {
+        entryDate = dateInput.value || new Date().toISOString().slice(0,10);
+        entryCategory = categorySelect.value;
+        entryAmount = Number(amountInput.value || 0);
+        entryNotes = notesInput.value.trim();
+      }
+      
+      const entry = {
+        id: crypto.randomUUID(),
+        date: entryDate,
+        category: entryCategory,
+        amount: entryAmount,
+        notes: entryNotes
+      };
+      
+      if (!entry.amount || entry.amount <= 0) {
+        alert('Please enter a valid amount');
+        return;
+      }
+      
+      store[key].entries.push(entry);
+      writeStore(store);
+      
+      // reset quick fields (keep date for speed)
+      if (fromQuick) {
+        quickAmountInput.value = '';
+        quickNotesInput.value = '';
+        quickAddModal.close();
+      } else {
+        amountInput.value = '';
+        notesInput.value = '';
+      }
+      
+      render();
+    }
+
+    function removeEntry(id) {
+      const key = currentKey();
+      const store = readStore();
+      const month = store[key];
+      if (!month) return;
+      
+      // Confirm deletion
+      if (!confirm('Are you sure you want to delete this entry?')) return;
+      
+      month.entries = month.entries.filter(e => e.id !== id);
+      writeStore(store);
+      render();
+    }
+
+    function editEntry(id) {
+      const key = currentKey();
+      const store = readStore();
+      const month = store[key];
+      const entry = month?.entries.find(e => e.id === id);
+      if (!entry) return;
+      
+      // Set values in the edit modal
+      editDateInput.value = entry.date;
+      editCategorySelect.value = entry.category;
+      editAmountInput.value = entry.amount;
+      editNotesInput.value = entry.notes || '';
+      editEntryId.value = entry.id;
+      
+      // Open the modal
+      entryEditorModal.showModal();
+    }
+
+    function saveEditedEntry() {
+      const id = editEntryId.value;
+      const key = currentKey();
+      const store = readStore();
+      const month = store[key];
+      const entry = month?.entries.find(e => e.id === id);
+      if (!entry) return;
+      
+      // Update entry
+      entry.date = editDateInput.value;
+      entry.category = editCategorySelect.value;
+      entry.amount = Number(editAmountInput.value);
+      entry.notes = editNotesInput.value.trim();
+      
+      writeStore(store);
+      entryEditorModal.close();
+      render();
+    }
+
+    function getMonthData() {
+      const key = currentKey();
+      const store = readStore();
+      return store[key] || { salary: 0, entries: [] };
+    }
+
+    function calcTotals() {
+      const { salary, entries } = getMonthData();
+      // income can be salary or extra income rows; base income is salary field
+      const incomeExtra = entries.filter(e => e.category === 'Income').reduce((s,e)=>s+e.amount,0);
+      const income = Number(salary || 0) + incomeExtra;
+      const needs = entries.filter(e => e.category === 'Needs').reduce((s,e)=>s+e.amount,0);
+      const wants = entries.filter(e => e.category === 'Wants').reduce((s,e)=>s+e.amount,0);
+      const savings = entries.filter(e => e.category === 'Savings').reduce((s,e)=>s+e.amount,0);
+      const spent = needs + wants + savings;
+      const balance = income - spent;
+      
+      // Get budget rules
+      const settings = readSettings();
+      let needsTarget, wantsTarget, savingsTarget;
+      
+      if (settings.budgetRule === 'custom') {
+        needsTarget = settings.customRules.needs;
+        wantsTarget = settings.customRules.wants;
+        savingsTarget = settings.customRules.savings;
+      } else {
+        // Parse from budgetRule string (format: NNWWSS)
+        needsTarget = parseInt(settings.budgetRule.substring(0, 2));
+        wantsTarget = parseInt(settings.budgetRule.substring(2, 4));
+        savingsTarget = parseInt(settings.budgetRule.substring(4, 6));
+      }
+      
+      const pct = (v) => income > 0 ? Math.round((v / income) * 100) : 0;
+      const spentPct = income > 0 ? Math.round((spent / income) * 100) : 0;
+      
+      return { 
+        income, 
+        needs, 
+        wants, 
+        savings, 
+        balance, 
+        spent,
+        spentPct,
+        pctNeeds: pct(needs), 
+        pctWants: pct(wants), 
+        pctSavings: pct(savings),
+        needsTarget,
+        wantsTarget,
+        savingsTarget
+      };
+    }
+
+    // Current filter and search
+    let currentFilter = 'all';
+    
+    function filterEntries(entries) {
+      // Apply category filter
+      let filtered = [...entries];
+      
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(e => e.category === currentFilter);
+      }
+      
+      // Apply search if active
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      if (searchTerm) {
+        filtered = filtered.filter(e => 
+          e.notes?.toLowerCase().includes(searchTerm) || 
+          e.date.toLowerCase().includes(searchTerm) ||
+          e.category.toLowerCase().includes(searchTerm) ||
+          e.amount.toString().includes(searchTerm)
+        );
+      }
+      
+      return filtered;
+    }
+
+    function render() {
+      // Update currency display
+      const settings = readSettings();
+      const currencySymbols = document.querySelectorAll('.currency-symbol');
+      currencySymbols.forEach(el => el.textContent = settings.currency);
+      currencySymbolDisplay.textContent = settings.currency;
+      
+      // Set default inputs
+      if (!monthPicker.value) monthPicker.value = new Date().toISOString().slice(0,7);
+      if (!dateInput.value) dateInput.value = new Date().toISOString().slice(0,10);
+
+      const { entries } = getMonthData();
+      const filteredEntries = filterEntries(entries);
+
+      // Render table rows (sorted by date, newest first)
+      const rows = [...filteredEntries]
+        .sort((a,b) => b.date.localeCompare(a.date))
+        .map(e => `
+          <tr>
+            <td>${e.date}</td>
+            <td>
+              <span class="badge ${badgeClass(e.category)}">${e.category}</span>
+            </td>
+            <td class="truncate">${escapeHtml(e.notes || '')}</td>
+            <td class="text-right font-medium">${formatCurrency(e.amount)}</td>
+            <td class="text-right flex gap-2 justify-end">
+              <button class="btn btn-xs" onclick="window.editEntry('${e.id}')">Edit</button>
+              <button class="btn btn-xs btn-error" onclick="window.removeEntry('${e.id}')">Delete</button>
+            </td>
+          </tr>`).join('');
+      
+      entriesBody.innerHTML = rows || '<tr><td colspan="5" class="text-center opacity-60">No entries yet</td></tr>';
+      
+      // Render mobile view
+      const mobileRows = [...filteredEntries]
+        .sort((a,b) => b.date.localeCompare(a.date))
+        .map(e => `
+          <div class="card mobile-card bg-base-100 shadow-sm">
+            <div>
+              <span class="font-semibold">${e.date}</span>
+              <span class="badge ${badgeClass(e.category)}">${e.category}</span>
+            </div>
+            <div>
+              <span>${escapeHtml(e.notes || '')}</span>
+              <span class="font-medium">${formatCurrency(e.amount)}</span>
+            </div>
+            <div class="flex justify-end gap-2 mt-2">
+              <button class="btn btn-xs" onclick="window.editEntry('${e.id}')">Edit</button>
+              <button class="btn btn-xs btn-error" onclick="window.removeEntry('${e.id}')">Delete</button>
+            </div>
+          </div>`).join('');
+      
+      entriesMobile.innerHTML = mobileRows || '<div class="text-center opacity-60 py-4">No entries yet</div>';
+
+      // KPIs
+      const t = calcTotals();
+      kpiIncome.textContent = formatCurrency(t.income);
+      kpiNeeds.textContent = formatCurrency(t.needs);
+      kpiWants.textContent = formatCurrency(t.wants);
+      kpiSavings.textContent = formatCurrency(t.savings);
+
+      pctNeeds.textContent = t.pctNeeds + '%';
+      pctWants.textContent = t.pctWants + '%';
+      pctSavings.textContent = t.pctSavings + '%';
+
+      // Update target displays
+      needsTarget.textContent = `target ≤ ${t.needsTarget}%`;
+      wantsTarget.textContent = `target ≤ ${t.wantsTarget}%`;
+      savingsTarget.textContent = `target ≥ ${t.savingsTarget}%`;
+
+      // Update progress bars
+      needsBar.value = t.pctNeeds; 
+      needsBarLabel.textContent = t.pctNeeds + '%';
+      needsBar.classList.toggle('progress-error', t.pctNeeds > t.needsTarget);
+      needsBar.classList.toggle('progress-primary', t.pctNeeds <= t.needsTarget);
+      
+      wantsBar.value = t.pctWants; 
+      wantsBarLabel.textContent = t.pctWants + '%';
+      wantsBar.classList.toggle('progress-error', t.pctWants > t.wantsTarget);
+      wantsBar.classList.toggle('progress-secondary', t.pctWants <= t.wantsTarget);
+      
+      savingsBar.value = t.pctSavings; 
+      savingsBarLabel.textContent = t.pctSavings + '%';
+      savingsBar.classList.toggle('progress-error', t.pctSavings < t.savingsTarget);
+      savingsBar.classList.toggle('progress-accent', t.pctSavings >= t.savingsTarget);
+      
+      // Update balance card
+      remainingBalance.textContent = formatCurrency(t.balance);
+      remainingBalance.classList.toggle('text-error', t.balance < 0);
+      balanceProgress.value = t.spentPct;
+      balanceProgress.classList.toggle('progress-error', t.spentPct > 100);
+      balanceProgress.classList.toggle('progress-success', t.spentPct <= 100);
+      spentPercentage.textContent = t.spentPct + '%';
+    }
+
+    function badgeClass(cat) {
+      switch (cat) {
+        case 'Income': return 'badge-success';
+        case 'Needs': return 'badge-primary';
+        case 'Wants': return 'badge-secondary';
+        case 'Savings': return 'badge-accent';
+        default: return 'badge-ghost';
+      }
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"]+/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
+    }
+
+    // Generate mock chart data for demo purposes
+    function generateMockChart(container, type) {
+      // In a real app, you'd use a charting library like Chart.js
+      const colors = ['#36a2eb', '#ff6384', '#4bc0c0', '#ff9f40'];
+      container.innerHTML = '';
+      
+      if (type === 'line') {
+        // Simple line chart mock
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.setAttribute('viewBox', '0 0 100 50');
+        svg.innerHTML = `
+          <polyline 
+            points="0,45 20,30 40,35 60,25 80,15 100,5" 
+            fill="none" 
+            stroke="#36a2eb" 
+            stroke-width="2" 
+          />
+          <text x="0" y="48" font-size="3" fill="currentColor">Jan</text>
+          <text x="20" y="48" font-size="3" fill="currentColor">Feb</text>
+          <text x="40" y="48" font-size="3" fill="currentColor">Mar</text>
+          <text x="60" y="48" font-size="3" fill="currentColor">Apr</text>
+          <text x="80" y="48" font-size="3" fill="currentColor">May</text>
+          <text x="95" y="48" font-size="3" fill="currentColor">Jun</text>
+        `;
+        container.appendChild(svg);
+      } else {
+        // Simple pie chart mock
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.setAttribute('viewBox', '0 0 100 50');
+        
+        // Fake pie segments
+        svg.innerHTML = `
+          <circle cx="25" cy="25" r="20" fill="${colors[0]}" />
+          <circle cx="25" cy="25" r="15" fill="${colors[1]}" />
+          <circle cx="25" cy="25" r="10" fill="${colors[2]}" />
+          <rect x="55" y="10" width="5" height="5" fill="${colors[0]}" />
+          <text x="65" y="15" font-size="4" fill="currentColor">Needs (50%)</text>
+          <rect x="55" y="20" width="5" height="5" fill="${colors[1]}" />
+          <text x="65" y="25" font-size="4" fill="currentColor">Wants (30%)</text>
+          <rect x="55" y="30" width="5" height="5" fill="${colors[2]}" />
+          <text x="65" y="35" font-size="4" fill="currentColor">Savings (20%)</text>
+        `;
+        container.appendChild(svg);
+      }
+    }
+
+    function loadStats() {
+      // Get all month data
+      const store = readStore();
+      const settings = readSettings();
+      
+      // Calculate averages
+      let totalIncome = 0;
+      let totalSpending = 0;
+      let monthCount = 0;
+      const topCategories = {};
+      
+      // Get 6 most recent months
+      const months = Object.keys(store).sort().reverse().slice(0, 6);
+      
+      months.forEach(month => {
+        const data = store[month];
+        if (!data) return;
+        
+        // Count this month
+        monthCount++;
+        
+        // Add up income (salary + income entries)
+        const monthIncome = data.salary + data.entries.filter(e => e.category === 'Income').reduce((sum, e) => sum + e.amount, 0);
+        totalIncome += monthIncome;
+        
+        // Add up spending by category
+        data.entries.forEach(entry => {
+          if (entry.category !== 'Income') {
+            totalSpending += entry.amount;
+            
+            // Group by note for top spending
+            const category = entry.notes || 'Uncategorized';
+            if (!topCategories[category]) {
+              topCategories[category] = 0;
+            }
+            topCategories[category] += entry.amount;
+          }
+        });
+      });
+      
+      // Calculate averages
+      const avgMonthlyIncome = monthCount > 0 ? totalIncome / monthCount : 0;
+      const avgMonthlySpending = monthCount > 0 ? totalSpending / monthCount : 0;
+      
+      // Display averages
+      avgIncome.textContent = formatCurrency(avgMonthlyIncome);
+      avgSpending.textContent = formatCurrency(avgMonthlySpending);
+      
+      // Sort top categories and display top 5
+      const sortedCategories = Object.entries(topCategories)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+      
+      if (sortedCategories.length > 0) {
+        topSpendingList.innerHTML = sortedCategories.map(([category, amount]) => `
+          <div class="flex justify-between items-center">
+            <span>${escapeHtml(category)}</span>
+            <span class="font-medium">${formatCurrency(amount)}</span>
+          </div>
+        `).join('');
+      } else {
+        topSpendingList.innerHTML = '<div class="text-center opacity-60">No spending data available</div>';
+      }
+      
+      // Generate mock charts (in a real app, use actual data)
+      generateMockChart(monthlyTrendChart, 'line');
+      generateMockChart(categoryDistChart, 'pie');
+    }
+
+    // ---------- Export/Import/Clear ----------
+    exportBtn.addEventListener('click', () => {
+      const data = readStore();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'budget-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    importInput.addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          if (typeof data === 'object' && data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            render();
+            alert('Import successful.');
+          } else throw new Error('Invalid data');
+        } catch (err) {
+          alert('Failed to import JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    clearMonthBtn.addEventListener('click', () => {
+      if (!confirm('Clear all entries for this month?')) return;
+      const key = currentKey();
+      const store = readStore();
+      if (store[key]) {
+        store[key].entries = [];
+        writeStore(store);
+        render();
+      }
+    });
+
+    // ---------- Settings ----------
+    function loadSettings() {
+      const settings = readSettings();
+      
+      currencySelect.value = settings.currency;
+      budgetRuleSelect.value = settings.budgetRule;
+      
+      // Set custom rule values
+      customNeeds.value = settings.customRules.needs;
+      customWants.value = settings.customRules.wants;
+      customSavings.value = settings.customRules.savings;
+      
+      // Show/hide custom section
+      customRuleSection.classList.toggle('hidden', settings.budgetRule !== 'custom');
+      
+      // Update custom rule total
+      updateCustomRuleTotal();
+    }
+    
+    function saveSettings() {
+      const settings = readSettings();
+      
+      settings.currency = currencySelect.value;
+      settings.budgetRule = budgetRuleSelect.value;
+      
+      // Save custom rules
+      settings.customRules = {
+        needs: parseInt(customNeeds.value) || 0,
+        wants: parseInt(customWants.value) || 0,
+        savings: parseInt(customSavings.value) || 0
+      };
+      
+      writeSettings(settings);
+      render();
+      settingsModal.close();
+    }
+    
+    function updateCustomRuleTotal() {
+      const needs = parseInt(customNeeds.value) || 0;
+      const wants = parseInt(customWants.value) || 0;
+      const savings = parseInt(customSavings.value) || 0;
+      const total = needs + wants + savings;
+      
+      customRuleTotal.textContent = `Total: ${total}%`;
+      customRuleTotal.classList.toggle('text-error', total !== 100);
+      customRuleTotal.classList.toggle('text-success', total === 100);
+    }
+
+    // ---------- Search and Filter ----------
+    function setFilter(category) {
+      currentFilter = category;
+      render();
+    }
+
+    // ---------- Event bindings ----------
+    saveSalaryBtn.addEventListener('click', saveSalary);
+    addBtn.addEventListener('click', () => addEntry(false));
+    monthPicker.addEventListener('change', () => loadMonth(currentKey()));
+    
+    // Settings
+    settingsBtn.addEventListener('click', () => {
+      loadSettings();
+      settingsModal.showModal();
+    });
+    saveSettingsBtn.addEventListener('click', saveSettings);
+    budgetRuleSelect.addEventListener('change', () => {
+      customRuleSection.classList.toggle('hidden', budgetRuleSelect.value !== 'custom');
+    });
+    
+    // Custom rule calculation
+    customNeeds.addEventListener('input', updateCustomRuleTotal);
+    customWants.addEventListener('input', updateCustomRuleTotal);
+    customSavings.addEventListener('input', updateCustomRuleTotal);
+    
+    // Quick Add
+    quickAdd.addEventListener('click', () => {
+      quickCategorySelect.value = 'Needs'; // Default to Needs
+      quickAmountInput.value = '';
+      quickNotesInput.value = '';
+      quickAddModal.showModal();
+    });
+    quickAddBtn.addEventListener('click', () => addEntry(true));
+    
+    // Entry Editor
+    saveEditBtn.addEventListener('click', saveEditedEntry);
+    
+    // Preset notes
+    presetNotes.forEach(note => {
+      note.addEventListener('click', () => {
+        notesInput.value = note.dataset.note;
+      });
+    });
+    
+    // Stats
+    viewStats.addEventListener('click', () => {
+      loadStats();
+      statsModal.showModal();
+    });
+    
+    // Search and Filter
+    searchBtn.addEventListener('click', () => {
+      searchBox.classList.toggle('hidden');
+      if (!searchBox.classList.contains('hidden')) {
+        searchInput.focus();
+      }
+    });
+    closeSearch.addEventListener('click', () => {
+      searchBox.classList.add('hidden');
+      searchInput.value = '';
+      render();
+    });
+    searchInput.addEventListener('input', () => {
+      render();
+    });
+    
+    // Filters
+    filterAll.addEventListener('click', () => setFilter('all'));
+    filterIncome.addEventListener('click', () => setFilter('Income'));
+    filterNeeds.addEventListener('click', () => setFilter('Needs'));
+    filterWants.addEventListener('click', () => setFilter('Wants'));
+    filterSavings.addEventListener('click', () => setFilter('Savings'));
+    
+    // Help
+    helpBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Budget Tracker Help\n\n• Set your monthly income\n• Add entries for all your expenses\n• Track against the budget rule\n• Use the 50/30/20 rule or customize\n• Export data for backup\n\nFor more help, check the documentation.');
+    });
+
+    // Theme handling
+    const THEME_KEY = 'budgetTheme';
+    function loadTheme() {
+      const saved = localStorage.getItem(THEME_KEY) || 'light';
+      document.documentElement.setAttribute('data-theme', saved);
+      themeSelect.value = saved;
+    }
+    themeSelect.addEventListener('change', () => {
+      document.documentElement.setAttribute('data-theme', themeSelect.value);
+      localStorage.setItem(THEME_KEY, themeSelect.value);
+    });
+
+    // PWA installation
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      // Update UI to notify the user they can add to home screen
+      installPWA.classList.remove('hidden');
+    });
+
+    installPWA.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      // Show the prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      // We no longer need the prompt, whether they accepted or not
+      deferredPrompt = null;
+      // Hide the button
+      installPWA.classList.add('hidden');
+    });
+
+    // ---------- Init ----------
+    (function init(){
+      loadTheme();
+      // default month = current
+      monthPicker.value = new Date().toISOString().slice(0,7);
+      // preload month structure
+      ensureMonth(currentKey());
+      // helpful default: set today on date input
+      dateInput.value = new Date().toISOString().slice(0,10);
+      loadMonth(currentKey());
+      // expose some functions for inline handlers
+      window.removeEntry = removeEntry;
+      window.editEntry = editEntry;
+    })();
+  </script>
+</body>
+</html>
